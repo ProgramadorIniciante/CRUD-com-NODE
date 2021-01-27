@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
+const body = require("body-parser");
 
 const consign = require("consign");
 
 app.set("views engine","ejs");
 app.set("views","./src/views");
+
+app.use(body.urlencoded({extended:true}));
 
 consign()
 .then("./src/models/models.js")
