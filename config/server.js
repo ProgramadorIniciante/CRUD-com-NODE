@@ -7,6 +7,8 @@ app.set("views engine","ejs");
 app.set("views","./src/views");
 
 consign()
+.then("./src/models/models.js")
+.then("./config/db.js")
 .then("./src/controlles/controlles.js")
 .include("./src/rotas")
 .into(app);

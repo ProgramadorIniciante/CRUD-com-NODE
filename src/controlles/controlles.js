@@ -7,5 +7,15 @@ module.exports.usuario = (app,req,res)=>{
 }
 
 module.exports.usuarios = (app,req,res)=>{
-    res.render("usuario/usuarios.ejs");
+    
+    const con = app.config.db();
+    const models = new app.src.models.models(con);
+    
+    models.usuarios(function(err,result){
+        if(!err){
+            res.render("usuario/usuarios.ejs",{result:result});
+        }else{
+            console.log("ERRO NA CONSULTA")
+        }
+    });
 }
